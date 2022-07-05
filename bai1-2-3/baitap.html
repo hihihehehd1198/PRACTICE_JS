@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .group-lession {
+        display: flex;
+        flex-direction: column;
+        height: 200px;
+        width: 200px;
+      }
+      .group-lession > * {
+        width: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="group-lession">
+      <label for="input-bai-3"><h1>Bài 3</h1></label>
+      <input type="number" placeholder="input bai 3" id="input-bai-3" />
+      <h1 id="output-bai-3"></h1>
+      <div>
+        <input onclick="isPalindrome()" type="button" value="check palindrome" />
+        <input
+          type="button"
+          value="clear"
+          onclick="(clearAllInput('input-bai-3'))"
+          id="input-bai-3"
+        />
+      </div>
+
+      <label for="input-bai-2"><h1>Bài 2</h1></label>
+      <input
+        type="string"
+        placeholder="nhập các phần tử cách nhau bởi dấu , "
+        id="input-bai-2-1"
+      />
+      <input
+        type="string"
+        placeholder="nhập các phần tử cách nhau bởi dấu , "
+        id="input-bai-2-2"
+      />
+      <h1 id="output-bai-2"></h1>
+      <div>
+        <input type="button" value="include-array" onclick="outputBai2()" />
+        <input
+          type="button"
+          placeholder="input bai 1"
+          value="clear"
+          onclick="(clearAllInput('input-bai-2'))"
+          id="input-bai-2"
+        />
+      </div>
+
+      <label for="input-bai-1"><h1>Bài 1</h1></label>
+      <input type="number" placeholder="input bai 1" id="input-bai-1" />
+      <h1 id="output-bai-1"></h1>
+      <div>
+        <input type="button" onclick="outputBai1()" value="get prime" />
+        <input
+          type="button"
+          value="clear"
+          onclick="(clearAllInput('input-bai-1'))"
+          id="input-bai-1"
+        />
+      </div>
+
+     
+      </div>
+
+    </div>
+  </body>
+
+  <script>
+    //     Palindrome Number
+    // Given an integer x, return true if x is palindrome integer.
+    // An integer is a palindrome when it reads the same backward as forward.
+    // For example, 121 is a palindrome while 123 is not.
+    const clearAllInput = (inputID) => {
+      document.getElementById(inputID).value = "";
+      idOutput = inputID.replace("input", "output");
+      document.getElementById(idOutput).innerText = "";
+    };
+    const isPalindrome = () => {
+      let x = document.getElementById("input-bai-1").value;
+      const output =
+        x.toString() === x.toString().split("").reverse().join("")
+          ? "is Palindrome"
+          : "is not Palindrome ";
+      document.getElementById("output-bai-1").innerText = output;
+    };
+
+
+
+    //     Cho 2 mảng
+    // arr1 = [1,2,3,4,5,6,7]
+    // arr2 = [1,2,3,9]
+    // Output: là 1 mảng chứa tất cả các phần tử chung của 2 mảng trên
+    const outputBai2 = () => {
+      let x = document.getElementById("input-bai-2-1").value;
+      let y = document.getElementById("input-bai-2-2").value;
+      const output = includeArray(x.split(","), y.split(","));
+      document.getElementById("output-bai-2").innerText = output;
+    };
+    const includeArray = (x, y) => {
+      console.log(x);
+      console.log(y);
+      const arrayOutput = x.concat(y);
+      const test = new Set(arrayOutput);
+      console.log(test);
+      newArrayNotDuplicate = [...new Set(arrayOutput)];
+
+      return newArrayNotDuplicate;
+    };
+
+
+    // Tìm tấ cả các số nguyên tố trong phạm vi 100.000
+    const outputBai1 = () => {
+      let x = document.getElementById("input-bai-1").value;
+      const output = findAllPrime(x);
+      document.getElementById("output-bai-1").innerText = output;
+    };
+    const findAllPrime = (length) => {
+      const outPut = [];
+      function isPrime(num) {
+        if (num < 2) return false;
+        for (var i = 2; i < num; i++) {
+          if (num % i == 0) return false;
+        }
+        return true;
+      }
+      for (var i = 0; i < length; i++) {
+        if (isPrime(i)) outPut.push(i);
+      }
+      return outPut.toString();
+    };
+  </script>
+</html>
